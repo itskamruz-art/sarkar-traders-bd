@@ -2,61 +2,159 @@
 <html lang="bn">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sarkar Traders BD</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Sarkar Traders - সরকার ট্রেডার্স</title>
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#f5f7fb}
-header{background:#0f172a;color:#fff;padding:18px;text-align:center;position:sticky;top:0}
-.tabs{display:flex;gap:8px;justify-content:center;padding:12px;flex-wrap:wrap}
-.tab{padding:9px 16px;border-radius:20px;border:1px solid #ddd;background:#fff;font-weight:700}
-.tab.active{background:#0f172a;color:#fff}
-.container{max-width:1100px;margin:auto;padding:12px}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
-.card{background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.06);padding:8px;text-align:center}
-.card img{width:100%;height:130px;object-fit:cover;border-radius:8px}
-.card h3{font-size:14px;margin:6px 0}
-.card p{color:#e11d48;font-weight:800}
-.btn{width:100%;padding:8px;background:#0f172a;color:#fff;border:0;border-radius:8px;margin-top:6px}
-.add{background:#fff;max-width:480px;margin:18px auto;padding:14px;border-radius:12px}
-.add input,.add select{width:100%;padding:10px;margin:5px 0;border:1px solid #ddd;border-radius:8px}
-.add button{width:100%;padding:11px;background:#16a34a;color:#fff;border:0;border-radius:8px;font-weight:700}
-footer{text-align:center;padding:16px;opacity:.6}
+*{margin:0;padding:0;box-sizing:border-box;font-family:Hind Siliguri,system-ui}
+body{background:#f5f6fb;color:#111}
+header{background:#0f172a;color:#fff;padding:18px;text-align:center;position:sticky;top:0;z-index:20}
+header h1{font-size:20px;line-height:1.2}
+header p{opacity:.8;font-size:13px;margin-top:4px}
+.market{max-width:1100px;margin:12px auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;padding:0 10px}
+.shop{background:#fff;border-radius:16px;padding:14px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 6px 18px rgba(0,0,0,.06);border:1px solid #eef2ff}
+.shop-info h3{font-size:16px}
+.shop-info span{font-size:12px;color:#64748b}
+.btn-visit{background:#0f172a;color:#fff;border:0;padding:8px 18px;border-radius:22px;font-weight:700;cursor:pointer}
+.tabs{display:flex;gap:8px;justify-content:center;padding:10px;flex-wrap:wrap;position:sticky;top:72px;z-index:10;background:#f5f6fb}
+.tab{padding:8px 16px;border-radius:20px;border:1px solid #e2e8f0;background:#fff;cursor:pointer;font-size:13px}
+.tab.active{background:#0f172a;color:#fff;border-color:#0f172a}
+.wrap{max-width:1100px;margin:auto;padding:0 10px 20px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(165px,1fr));gap:10px}
+.card{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 6px 18px rgba(0,0,0,.06);border:1px solid #f1f5f9;display:flex;flex-direction:column}
+.card img{width:100%;height:170px;object-fit:cover;background:#f1f5f9}
+.card-body{padding:8px}
+.card-body h4{font-size:13px;line-height:1.3;height:34px;overflow:hidden}
+.price{color:#e11d48;font-weight:900;font-size:14px;margin-top:4px}
+.actions{display:flex;gap:6px;margin-top:6px}
+.b{flex:1;padding:8px 6px;border:0;border-radius:8px;font-weight:800;font-size:12px;cursor:pointer}
+.buy{background:#0f172a;color:#fff}
+.share{background:#eef2ff;color:#0f172a}
+.visit2{display:block;text-align:center;font-size:10px;margin-top:6px;color:#0f172a;text-decoration:none;font-weight:700}
+.admin{max-width:480px;margin:18px auto;background:#fff;border-radius:14px;padding:12px;box-shadow:0 6px 18px rgba(0,0,0,.06)}
+.admin h3{text-align:center;font-size:15px;margin-bottom:8px}
+.admin input,.admin select{width:100%;padding:9px;margin:4px 0;border:1px solid #e2e8f0;border-radius:8px}
+.admin button{width:100%;padding:10px;background:#16a34a;color:#fff;border:0;border-radius:8px;font-weight:800;margin-top:6px}
+#orderModal{position:fixed;inset:0;background:rgba(15,23,42,.55);display:none;align-items:center;justify-content:center;z-index:100;padding:12px}
+.modalBox{background:#fff;width:100%;max-width:400px;border-radius:16px;padding:14px;max-height:92vh;overflow:auto}
+.modalBox h3{text-align:center;font-size:16px}
+.modalBox .pprice{text-align:center;color:#e11d48;font-weight:900;margin:6px 0}
+.modalBox input,.modalBox select{width:100%;padding:9px;margin:5px 0;border:1px solid #e2e8f0;border-radius:8px}
+.payBox{background:#f8fafc;border:1px dashed #cbd5e1;padding:8px;border-radius:8px;display:none;margin:6px 0;font-size:13px}
+.closeX{float:right;font-size:22px;cursor:pointer}
+.btn-confirm{width:100%;padding:11px;background:#0f172a;color:#fff;border:0;border-radius:10px;font-weight:900;margin-top:8px}
+footer{text-align:center;padding:14px;font-size:11px;opacity:.7}
 </style>
 </head>
 <body>
-<header><h1>Sarkar Traders BD</h1><p>Fashion | Electronics | Cosmetic</p></header><div class="tabs">
-<button class="tab active" onclick="show('all',this)">সব</button>
-<button class="tab" onclick="show('fashion',this)">Fashion</button>
-<button class="tab" onclick="show('electronics',this)">Electronics</button>
-<button class="tab" onclick="show('cosmetic',this)">Cosmetic</button>
+<header>
+<h1>Sarkar Traders - সরকার ট্রেডার্স</h1><p>আপনার বিশ্বস্ত অনলাইন মার্কেটপ্লেস | WhatsApp: 01731557732</p>
+</header>
+<div class="market" id="marketHome">
+<div class="shop"><div class="shop-info"><h3>👗 Fashion World</h3><span>ফ্যাশন ওয়ার্ল্ড - আধুনিক পোশাক</span></div><button class="btn-visit" onclick="openShop('fashion')">Visit</button></div>
+<div class="shop"><div class="shop-info"><h3>💄 Beauty Glamour</h3><span>বিউটি গ্ল্যামার - রূপচর্চা</span></div><button class="btn-visit" onclick="openShop('cosmetic')">Visit</button></div>
+<div class="shop"><div class="shop-info"><h3>🔌 Electro Mart</h3><span>ইলেকট্রো মার্ট - স্মার্ট গ্যাজেট</span></div><button class="btn-visit" onclick="openShop('electronics')">Visit</button></div>
 </div>
-<div class="container">
+<div class="tabs">
+<button class="tab active" onclick="filterCat('all',this)">সব পণ্য</button>
+<button class="tab" onclick="filterCat('fashion',this)">Fashion World</button>
+<button class="tab" onclick="filterCat('cosmetic',this)">Beauty Glamour</button>
+<button class="tab" onclick="filterCat('electronics',this)">Electro Mart</button>
+</div>
+<div class="wrap">
 <div class="grid" id="grid"></div>
-<div class="add">
-<h3 style="text-align:center">+ পণ্য যোগ করুন</h3>
-<select id="shop">
-<option value="fashion">Fashion</option>
-<option value="electronics">Electronics</option>
-<option value="cosmetic">Cosmetic</option>
+<div class="admin">
+<h3>🔧 এডমিন - পণ্য যোগ (শুধু আপনি)</h3>
+<select id="aCat"><option value="fashion">Fashion World - ফ্যাশন</option><option value="cosmetic">Beauty Glamour - কসমেটিক</option><option value="electronics">Electro Mart - ইলেকট্রিক</option></select>
+<input id="aName" placeholder="পণ্যের নাম">
+<input id="aPrice" type="number" placeholder="দাম (৳)">
+<input id="aImg" placeholder="ছবির লিংক https://">
+<button onclick="addProduct()">পণ্য যোগ করুন</button>
+</div>
+</div>
+<div id="orderModal"><div class="modalBox">
+<span class="closeX" onclick="closeOrder()">&times;</span>
+<h3 id="oName">পণ্য</h3>
+<div class="pprice" id="oPrice"></div>
+<img id="oImg" src="" style="width:100%;height:180px;object-fit:cover;border-radius:10px;display:none">
+<input id="cName" placeholder="আপনার নাম">
+<input id="cPhone" placeholder="মোবাইল নম্বর">
+<input id="cAddr" placeholder="পূর্ণ ঠিকানা">
+<select id="orderMethod" onchange="methodChange()">
+<option value="">-- অর্ডার পদ্ধতি --</option>
+<option value="Cash On Delivery">Cash On Delivery</option>
+<option value="Payment">Payment</option>
 </select>
-<input id="name" placeholder="পণ্যের নাম">
-<input id="price" type="number" placeholder="দাম">
-<input id="img" placeholder="ছবির লিংক">
-<button onclick="add()">যোগ করুন</button>
+<div id="payMethodBox" style="display:none">
+<select id="payType" onchange="payTypeChange()">
+<option value="">bKash / Nagad</option>
+<option value="bKash">bKash</option>
+<option value="Nagad">Nagad</option>
+</select>
 </div>
-</div>
-<footer>Sarkar Traders BD - Rajshahi</footer><script>
-let products=JSON.parse(localStorage.getItem('sarkar')||'[]');
-if(products.length==0){products=[
-{c:'fashion',n:'Men T-Shirt',p:550,i:'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400'},
-{c:'electronics',n:'Headphone',p:1250,i:'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400'},
-{c:'cosmetic',n:'Face Cream',p:850,i:'https://images.unsplash.com/photo-1556228720-195a672e8a03?w=400'}
-];}
-function render(f='all'){let g=document.getElementById('grid');g.innerHTML='';let list=f=='all'?products:products.filter(x=>x.c==f);list.forEach(x=>{g.innerHTML+=`<div class="card"><img src="${x.i}"><h3>${x.n}</h3><p>৳${x.p}</p><button class="btn">Order</button></div>`})}
-function show(f,e){document.querySelectorAll('.tab').forEach(b=>b.classList.remove('active'));e.classList.add('active');render(f)}
-function add(){let c=document.getElementById('shop').value,n=document.getElementById('name').value,p=document.getElementById('price').value,i=document.getElementById('img').value;if(!n||!p||!i){alert('সব পূরণ করুন');return}products.push({c,n,p,i});localStorage.setItem('sarkar',JSON.stringify(products));render();document.getElementById('name').value='';document.getElementById('price').value='';document.getElementById('img').value='';alert('যোগ হইছে!')}
+<div id="sendMoneyBox" class="payBox">
+<b>Send Money করুন:</b><br>
+Personal: <b style="color:#e11d48">01731557732</b><br>
+Type: Send Money<br>
+<input id="trId" placeholder="Transaction ID দিন">
+</div><button class="btn-confirm" onclick="confirmOrder()">✅ Confirm Order</button>
+</div></div>
+<footer>© Sarkar Traders BD | 01731557732</footer>
+<script>
+const SHEET_URL="https://script.google.com/macros/s/AKfycbzaYKGa6sbFpi6MyCc35lygkyCULwb1xMi9nz-DGFUkU4kISWOF3qkDBQCpVSS4BNUW/exec";
+const WA_NUM="8801731557732";
+const STORAGE_KEY="sarkar_traders_v4";
+let products=JSON.parse(localStorage.getItem(STORAGE_KEY)||"[]");
+if(products.length===0){
+products=[
+{c:"fashion",n:"Premium Cotton T-Shirt",p:650,i:"https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=500"},
+{c:"fashion",n:"Stylish Panjabi",p:1250,i:"https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=500"},
+{c:"cosmetic",n:"Lipstick Matte Set",p:550,i:"https://images.unsplash.com/photo-1586495777744-4413f21062fa?w=500"},
+{c:"cosmetic",n:"Face Cream Glow",p:850,i:"https://images.unsplash.com/photo-1556228720-195a672e8a03?w=500"},
+{c:"electronics",n:"Wireless Headphone",p:1450,i:"https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=500"},
+{c:"electronics",n:"Smart Watch",p:1850,i:"https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=500"}
+];
+save();
+}
+function save(){localStorage.setItem(STORAGE_KEY,JSON.stringify(products));}
+let currentIndex=null;
+function render(cat="all"){
+const urlParams=new URLSearchParams(location.search);
+const pIdx=urlParams.get("p");
+const oIdx=urlParams.get("order");
+let list=products.map((x,i)=>({...x,orig:i}));
+if(cat!=="all") list=list.filter(x=>x.c===cat);
+if(pIdx!==null && products[pIdx]){list=[{...products[pIdx],orig:parseInt(pIdx)}];}
+const g=document.getElementById("grid");
+g.innerHTML="";
+list.forEach(item=>{
+g.innerHTML+=`<div class="card"><img src="${item.i}"><div class="card-body"><h4>${item.n}</h4><div class="price">৳ ${item.p}</div><div class="actions"><button class="b buy" onclick="buyNow(${item.orig})">Buy Now</button><button class="b share" onclick="shareProd(${item.orig})">Share</button></div><a class="visit2" href="${location.origin+location.pathname}">Visit Website</a></div></div>`;
+});
+if(oIdx!==null && products[oIdx]){setTimeout(()=>buyNow(parseInt(oIdx)),600);}
+}
+function filterCat(c,el){document.querySelectorAll(".tab").forEach(t=>t.classList.remove("active"));el.classList.add("active");document.getElementById("marketHome").style.display=c==="all"?"grid":"none";render(c);}
+function openShop(c){render(c);document.getElementById("marketHome").style.display="none";}
+function addProduct(){
+const c=document.getElementById("aCat").value;
+const n=document.getElementById("aName").value.trim();
+const p=document.getElementById("aPrice").value.trim();
+const i=document.getElementById("aImg").value.trim();
+if(!n||!p||!i){alert("সব ঘর পূরণ করুন");return;}
+products.push({c,n,p:parseInt(p),i});save();render();
+alert("পণ্য যোগ হয়েছে!");
+}
+function buyNow(idx){currentIndex=idx;const pr=products[idx];document.getElementById("oName").innerText=pr.n;document.getElementById("oPrice").innerText="৳ "+pr.p;document.getElementById("oImg").src=pr.i;document.getElementById("oImg").style.display="block";document.getElementById("orderModal").style.display="flex";}
+function closeOrder(){document.getElementById("orderModal").style.display="none";}
+function methodChange(){const m=document.getElementById("orderMethod").value;document.getElementById("payMethodBox").style.display=m==="Payment"?"block":"none";document.getElementById("sendMoneyBox").style.display="none";}
+function payTypeChange(){const t=document.getElementById("payType").value;document.getElementById("sendMoneyBox").style.display=t?"block":"none";}function shareProd(idx){const p=products[idx];const shareUrl=location.origin+location.pathname+"?p="+idx+"&order="+idx;const text=`🛍️ ${p.n} 💰 ৳${p.p} 📸 ${p.i} 👉 Buy Now: ${shareUrl} 🌐 Visit Website: ${location.origin+location.pathname}`;window.open("https://wa.me/?text="+encodeURIComponent(text),"_blank");}
+async function confirmOrder(){
+const name=document.getElementById("cName").value.trim();const phone=document.getElementById("cPhone").value.trim();const addr=document.getElementById("cAddr").value.trim();const method=document.getElementById("orderMethod").value;const payType=document.getElementById("payType").value;const trx=document.getElementById("trId").value.trim();
+if(!name||!phone||!addr||!method){alert("সব পূরণ করুন");return;}
+if(method==="Payment" &&!payType){alert("bKash/Nagad");return;}
+if(method==="Payment" &&!trx){alert("TrxID দিন");return;}
+const pr=products[currentIndex];const data={product:pr.n,price:pr.p,image:pr.i,category:pr.c,customerName:name,customerPhone:phone,address:addr,paymentMethod:method,paymentType:payType||method,transactionId:trx,personalNumber:"01731557732",date:new Date().toLocaleString("bn-BD"),link:location.origin+location.pathname+"?p="+currentIndex};
+try{await fetch(SHEET_URL,{method:"POST",mode:"no-cors",body:JSON.stringify(data)});}catch(e){}
+let waMsg=`*নতুন অর্ডার - Sarkar Traders* 🛍️ ${data.product} 💰 ৳${data.price} 👤 ${name} 📱 ${phone} 🏠 ${addr} 💳 ${method} ${payType} ${trx} 🔗 ${data.link}`;window.open("https://wa.me/"+WA_NUM+"?text="+encodeURIComponent(waMsg),"_blank");alert("✅ অর্ডার সফল!");closeOrder();}
 render();
 </script>
-</body>
-</html>
+</body> 
+</html> 
